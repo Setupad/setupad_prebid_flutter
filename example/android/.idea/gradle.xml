@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../../../../Flutter/flutter_3.22.0/packages/flutter_tools/gradle" name="gradle">
+                <projects>
+                  <project path="$PROJECT_DIR$/../../../../Flutter/flutter_3.22.0/packages/flutter_tools/gradle" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/8.1.1/libexec" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../../Flutter/flutter_3.22.0/packages/flutter_tools/gradle" />
+            <option value="$PROJECT_DIR$/../../../../Flutter/flutter_3.22.0/packages/integration_test/android" />
+            <option value="$PROJECT_DIR$/../../android" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
