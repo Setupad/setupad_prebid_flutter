@@ -1,6 +1,6 @@
 # Setupad Prebid plugin
 
-This is a [Setupad's] Flutter plugin that allows its user to display Prebid banner and interstitial ads in Flutter mobile applications.
+This is a [Setupad's] Flutter plugin that allows its user to display [Prebid Mobile SDK] banner and interstitial ads in Flutter mobile applications.
 
 # Plugin integration
 ## Prerequisites
@@ -135,3 +135,4 @@ if (_showInterstitial)
 
 ----
 [Setupad's]: https://setupad.com/
+[Prebid Mobile SDK]: https://docs.prebid.org/prebid-mobile/prebid-mobile.html
