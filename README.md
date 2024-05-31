@@ -1,6 +1,6 @@
 # Setupad Prebid plugin
 
-This is a Setupad's Flutter plugin that allows its user to display Prebid banner and interstitial ads in Flutter mobile applications.
+This is a [Setupad's] Flutter plugin that allows its user to display Prebid banner and interstitial ads in Flutter mobile applications.
 
 # Plugin integration
 ## Prerequisites
@@ -90,8 +90,48 @@ PrebidAd prebidBanner = const PrebidAd(
     );
   }
 ```
+`AD_UNIT_ID` and `CONFIG_ID` are placeholders for the ad unit ID and config ID parameters. The minimum refresh interval is 30 seconds, and the maximum is 120 seconds.
+
+### Controlling banner auction
+It is necessary to stop the auction when leaving a screen where the banner ad is displayed because if not stopped, the auction continues happening and displaying ads that are not seen by anyone. To avoid this, use `PrebidAd` class’ `pauseAuction()` and `resumeAuction` methods. In addition, if there is a need, a banner object can be destroyed using the `destroyAuction` method. 
+```dart
+prebidBanner.pause();
+prebidBanner.resume();
+prebidBanner.destroy();
+```
+To correctly control Prebid auction, you need to use the same object you created for your banner; in this case it is `prebidBanner`.
+
+## Interstitial ad
+To display an interstitial ad, you first need to create a `PrebidAd` class object.
+```dart
+PrebidAd prebidInterstitial = const PrebidAd(
+  adType: 'interstitial',
+  configId: CONFIG_ID,
+  adUnitId: AD_UNIT_D,
+  width: 80,
+  height: 60,
+  refreshInterval: 0,
+);
+```
+`AD_UNIT_ID` and `CONFIG_ID` are placeholders. The refresh interval is set to zero because interstitial ads do not refresh. Unlike in the banner ads, in the interstitial ads the width and height variables are used to indicate the minimum screen's width and height in percent that the interstitial ad can take. In this case 80x60 means that the minimum width of the interstitial ad will be at least 80% of the screen and at least 60% of the height. As these size parameters are optional, you can opt out of specifying them by writing zero as their value. 
+
+If you want to display an interstitial ad on button press, it is necessary to use `setState()` with a boolean variable.
+```dart
+bool _showInterstitial = false;
+//...
+ElevatedButton(
+  child: const Text('Press me!'),
+  onPressed: () {
+    setState(() {
+      _showInterstitial = true;
+    });
+  },
+),
+if (_showInterstitial)
+  prebidInterstitial,
+),
+//...
+```
 
 ----
-[Prebid Flutter plugin]: https://gitlab.com/setupad/prebid_flutter_plugin.git
-[Setupad]: https://setupad.com/
-[CC BY-ND 4.0]: https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1
+[Setupad's]: https://setupad.com/
