@@ -16,7 +16,7 @@ This is a [Setupad's] Flutter plugin that allows its user to display [Prebid Mob
 In your `pubspec.yaml` file’s dependencies include Setupad's Prebid plugin for Flutter and run 'flutter pub get' command in the terminal.
 ```yaml
 dependencies:
- setupad_prebid_flutter: 0.0.1
+ setupad_prebid_flutter: 1.0.0
 ```
 
 ## Adding app ID
@@ -64,16 +64,9 @@ import 'package:setupad_prebid_flutter/prebid_ads.dart';
 ```
 
 ## Banner
-To display a banner, first you need to create a `PrebidAd` class object and then add it to your widget.
+To display a banner, you need to create a `PrebidAd` class object inside your widget.
 ```dart
-PrebidAd prebidBanner = const PrebidAd(
-  adType: 'banner',
-  configId: 'CONFIG_ID',
-  adUnitId: 'AD_UNIT_ID',
-  width: 300,
-  height: 250,
-  refreshInterval: 30,
-);
+final _bannerController = PrebidAdController();
 //...
 @override
   Widget build(BuildContext context) {
@@ -82,7 +75,15 @@ PrebidAd prebidBanner = const PrebidAd(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-            prebidAd, //your banner object added to the widget
+            PrebidAd(
+                adType: 'banner',
+                configId: 'CONFIG_ID',
+                adUnitId: 'AD_UNIT_ID',
+                width: 300,
+                height: 250,
+                refreshInterval: 30,
+                controller: _bannerController,
+              );, 
             //..
          ],
         ),
@@ -93,25 +94,30 @@ PrebidAd prebidBanner = const PrebidAd(
 `AD_UNIT_ID` and `CONFIG_ID` are placeholders for the ad unit ID and config ID parameters. The minimum refresh interval is 30 seconds, and the maximum is 120 seconds.
 
 ### Controlling banner auction
-It is necessary to stop the auction when leaving a screen where the banner ad is displayed because if not stopped, the auction continues happening and displaying ads that are not seen by anyone. To avoid this, use `PrebidAd` class’ `pauseAuction()` and `resumeAuction` methods. In addition, if there is a need, a banner object can be destroyed using the `destroyAuction` method.
+It is necessary to stop the auction when leaving a screen where the banner ad is displayed because if not stopped, the auction continues happening and displaying ads that are not seen by anyone. To avoid this, use `pauseAuction()` and `resumeAuction` methods. In addition, if there is a need, a banner object can be destroyed using the `destroyAuction` method.
 ```dart
-prebidBanner.pause();
-prebidBanner.resume();
-prebidBanner.destroy();
+_bannerController.pause();
+_bannerController.resume();
+_bannerController.destroy();
 ```
-To correctly control Prebid auction, you need to use the same object you created for your banner; in this case it is `prebidBanner`.
+To correctly control Prebid auction, you need to use the banner controller; in this case it is `_bannerController`.
 
 ## Interstitial ad
-To display an interstitial ad, you first need to create a `PrebidAd` class object.
+To display an interstitial ad, you need to use a `PrebidAd` class object.
 ```dart
-PrebidAd prebidInterstitial = const PrebidAd(
-  adType: 'interstitial',
-  configId: CONFIG_ID,
-  adUnitId: AD_UNIT_D,
-  width: 80,
-  height: 60,
-  refreshInterval: 0,
-);
+  final _interstitialController = PrebidAdController();
+
+  //...
+
+  PrebidAd(
+    adType: 'interstitial',
+    configId: CONFIG_ID,
+    adUnitId: AD_UNIT_D,
+    width: 80,
+    height: 60,
+    refreshInterval: 0,
+    controller: _interstitialController,
+  );
 ```
 `AD_UNIT_ID` and `CONFIG_ID` are placeholders. The refresh interval is set to zero because interstitial ads do not refresh. Unlike in the banner ads, in the interstitial ads the width and height variables are used to indicate the minimum screen's width and height in percent that the interstitial ad can take. In this case 80x60 means that the minimum width of the interstitial ad will be at least 80% of the screen and at least 60% of the height. As these size parameters are optional, you can opt out of specifying them by writing zero as their value.
 
@@ -128,7 +134,15 @@ ElevatedButton(
   },
 ),
 if (_showInterstitial)
-  prebidInterstitial,
+  PrebidAd(
+    adType: 'interstitial',
+    configId: CONFIG_ID,
+    adUnitId: AD_UNIT_D,
+    width: 80,
+    height: 60,
+    refreshInterval: 0,
+    controller: _interstitialController,
+  );
 ),
 //...
 ```
