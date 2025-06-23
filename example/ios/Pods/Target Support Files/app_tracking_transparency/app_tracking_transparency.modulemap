@@ -1,0 +1,6 @@
+framework module app_tracking_transparency {
+  umbrella header "app_tracking_transparency-umbrella.h"
+
+  export *
+  module * { export * }
+}

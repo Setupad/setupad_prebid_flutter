@@ -1,0 +1,6 @@
+framework module setupad_prebid_flutter {
+  umbrella header "setupad_prebid_flutter-umbrella.h"
+
+  export *
+  module * { export * }
+}

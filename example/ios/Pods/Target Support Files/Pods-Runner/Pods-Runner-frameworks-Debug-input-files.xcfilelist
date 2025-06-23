@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh
+${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework
+${BUILT_PRODUCTS_DIR}/app_tracking_transparency/app_tracking_transparency.framework
+${BUILT_PRODUCTS_DIR}/integration_test/integration_test.framework

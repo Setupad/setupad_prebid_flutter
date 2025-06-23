@@ -1,0 +1,11 @@
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK" "${PODS_CONFIGURATION_BUILD_DIR}/PrebidMobile" "${PODS_CONFIGURATION_BUILD_DIR}/app_tracking_transparency" "${PODS_CONFIGURATION_BUILD_DIR}/integration_test" "${PODS_CONFIGURATION_BUILD_DIR}/setupad_prebid_flutter" "${PODS_ROOT}/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework" "${PODS_ROOT}/GoogleUserMessagingPlatform/Frameworks/Release" "${PODS_ROOT}/PrebidMobile/Frameworks" "${PODS_XCFRAMEWORKS_BUILD_DIR}/Google-Mobile-Ads-SDK" "${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleUserMessagingPlatform"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK/Google_Mobile_Ads_SDK.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PrebidMobile/PrebidMobile.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/app_tracking_transparency/app_tracking_transparency.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/integration_test/integration_test.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/setupad_prebid_flutter/setupad_prebid_flutter.framework/Headers" "${PODS_XCFRAMEWORKS_BUILD_DIR}/PrebidMobile/core/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"sqlite3" -l"z" -framework "AVFoundation" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreVideo" -framework "Foundation" -framework "JavaScriptCore" -framework "MapKit" -framework "MediaPlayer" -framework "MessageUI" -framework "MobileCoreServices" -framework "Network" -framework "PrebidMobile" -framework "QuartzCore" -framework "SafariServices" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -framework "app_tracking_transparency" -framework "integration_test" -weak_framework "AdSupport" -weak_framework "StoreKit" -weak_framework "WebKit"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES
