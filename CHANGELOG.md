@@ -1,4 +1,4 @@
-## 0.0.1
+## 1.0.0
 
 * Removed the hardcoded method channel's ID
 * Added controller to the PrebidAd class
