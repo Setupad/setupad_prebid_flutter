@@ -41,37 +41,37 @@ class _MyAppState extends State<MyAppState> {
 
   final _bannerController = PrebidAdController();
   final _interstitialController = PrebidAdController();
-  
+
   @override
   void initState() {
-  super.initState();
+    super.initState();
 
-  WidgetsFlutterBinding.ensureInitialized()
-      .addPostFrameCallback((_) => initPlugin());
+    WidgetsFlutterBinding.ensureInitialized()
+        .addPostFrameCallback((_) => initPlugin());
   }
 
   Future<void> showCustomTrackingDialog(BuildContext context) async =>
-    await showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Dear User'),
-        content: const Text(
-          'We care about your privacy and data security. We keep this app free by showing ads. '
-          'Can we continue to use your data to tailor ads for you?\n\nYou can change your choice anytime in the app settings. '
-          'Our partners will collect data and use a unique identifier on your device to show you ads.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Continue'),
+      await showDialog<void>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Dear User'),
+          content: const Text(
+            'We care about your privacy and data security. We keep this app free by showing ads. '
+            'Can we continue to use your data to tailor ads for you?\n\nYou can change your choice anytime in the app settings. '
+            'Our partners will collect data and use a unique identifier on your device to show you ads.',
           ),
-        ],
-      ),
-    );
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Continue'),
+            ),
+          ],
+        ),
+      );
 
   Future<void> initPlugin() async {
     final TrackingStatus status =
-    await AppTrackingTransparency.trackingAuthorizationStatus;
+        await AppTrackingTransparency.trackingAuthorizationStatus;
     if (status == TrackingStatus.notDetermined) {
       await showCustomTrackingDialog(context);
       await Future.delayed(const Duration(milliseconds: 200));
@@ -81,7 +81,6 @@ class _MyAppState extends State<MyAppState> {
   }
 
   bool _showInterstitial = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -145,4 +144,3 @@ class _MyAppState extends State<MyAppState> {
     );
   }
 }
-
