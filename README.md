@@ -149,8 +149,3 @@ if (_showInterstitial)
 
 ----
 [Setupad's]: https://setupad.com/
-<<<<<<< HEAD
-[Prebid Mobile SDK]: https://docs.prebid.org/prebid-mobile/prebid-mobile.html
-=======
-[Prebid Mobile SDK]: https://docs.prebid.org/prebid-mobile/prebid-mobile.html
->>>>>>> 9111426fe6d26d71884a593c6c21d24e55ba65ba
