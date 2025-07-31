@@ -7,7 +7,7 @@ import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  const PrebidMobile().initializeSDK("apptest", 3000, false);
+  const PrebidMobile().initializeSDK("apptest", 3000, true);
   runApp(const MyApp());
 }
 

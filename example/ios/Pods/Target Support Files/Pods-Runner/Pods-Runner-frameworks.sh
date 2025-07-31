@@ -179,16 +179,19 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/app_tracking_transparency/app_tracking_transparency.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/integration_test/integration_test.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PrebidMobile/core/OMSDK_Prebidorg.framework"
 fi
 if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/app_tracking_transparency/app_tracking_transparency.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/integration_test/integration_test.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PrebidMobile/core/OMSDK_Prebidorg.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/app_tracking_transparency/app_tracking_transparency.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/integration_test/integration_test.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PrebidMobile/core/OMSDK_Prebidorg.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

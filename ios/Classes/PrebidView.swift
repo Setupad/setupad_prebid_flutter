@@ -8,11 +8,11 @@ import OSLog
 import os
 
 ///A class that is responsible for creating and adding banner and interstitial ads to the Flutter app's view, as well as pausing and resuming auction
-class PrebidView: NSObject, FlutterPlatformView, GADBannerViewDelegate, GADFullScreenContentDelegate {
+class PrebidView: NSObject, FlutterPlatformView, GoogleMobileAds.BannerViewDelegate, FullScreenContentDelegate {
     private var _methodChannel: FlutterMethodChannel
     private var bannerLayout: UIView!
 
-    private var gamBanner: GAMBannerView!
+    private var gamBanner: AdManagerBannerView!
     private var bannerAdUnit: BannerAdUnit!
     private var interstitialAdUnit: InterstitialAdUnit!
 
@@ -137,12 +137,12 @@ class PrebidView: NSObject, FlutterPlatformView, GADBannerViewDelegate, GADFullS
 
         ///DispatchQueue is used to avoid problems when changing banner layout (by adding a gamBanner to it) due to the banner ayout being in main thread
         DispatchQueue.main.async { [self] in
-            gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(CGSize(width: width, height: height)))
+            gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: CGSize(width: width, height: height)))
             gamBanner.adUnitID=AD_UNIT_ID
             gamBanner.rootViewController = UIApplication.shared.delegate!.window!!.rootViewController!
             gamBanner.delegate = self
             addBannerViewToView(gamBanner)
-            let request = GAMRequest()
+            let request = AdManagerRequest()
             bannerAdUnit.fetchDemand(adObject: request){ [weak self] resultCode in
                 os_log("Prebid demand fetch for GAM result: %@",
                        log: self!.customLog,
@@ -162,18 +162,18 @@ class PrebidView: NSObject, FlutterPlatformView, GADBannerViewDelegate, GADFullS
             interstitialAdUnit = InterstitialAdUnit(configId: CONFIG_ID)
         }
             
-        let gamRequest = GAMRequest()
+        let gamRequest = AdManagerRequest()
         interstitialAdUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
             os_log("Prebid demand fetch for GAM result: %@",
                    log: self!.customLog,
                    type: .info,
                    resultCode.name())
 
-            GAMInterstitialAd.load(withAdManagerAdUnitID: AD_UNIT_ID, request: gamRequest) { ad, error in
+            AdManagerInterstitialAd.load(with: AD_UNIT_ID, request: gamRequest) { ad, error in
                 guard let self = self else { return }
 
                 if let error = error {
-                    os_log("%{error}: Failed to load interstitial ad with error: %@",
+                    os_log("%{public}@: Failed to load interstitial ad with error: %@",
                            log: self.customLog,
                            type: .error,
                            error.localizedDescription)
@@ -183,20 +183,20 @@ class PrebidView: NSObject, FlutterPlatformView, GADBannerViewDelegate, GADFullS
                         os_log("Error: Could not find root view controller to present the ad", log: self.customLog, type: .error)
                         return
                     }
-                    ad.present(fromRootViewController: rootViewController)
+                    ad.present(from: rootViewController)
                 }
             }
         }
     }
 
     ///Resizing banner
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
         AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
-            guard let bannerView = bannerView as? GAMBannerView else { return }
-            bannerView.resize(GADAdSizeFromCGSize(size))
+            guard let bannerView = bannerView as? AdManagerBannerView else { return }
+            bannerView.resize(adSizeFor(cgSize:size))
             os_log("Success in finding Prebid creative size", log: self.customLog, type: .info)
         }, failure: { (error) in
-            os_log("Failure in finding Prebid creative size: %{error} ",
+            os_log("Failure in finding Prebid creative size: %{public}@",
                    log: self.customLog,
                    type: .error,
                    error.localizedDescription)
@@ -204,7 +204,7 @@ class PrebidView: NSObject, FlutterPlatformView, GADBannerViewDelegate, GADFullS
     }
 
     ///Adding banner to the banner layout
-    func addBannerViewToView(_ bannerView: GAMBannerView) {
+    func addBannerViewToView(_ bannerView: AdManagerBannerView) {
         bannerLayout.translatesAutoresizingMaskIntoConstraints = false
         bannerLayout.addSubview(bannerView)
         bannerLayout.addConstraints(

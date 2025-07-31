@@ -7,7 +7,7 @@ This is a [Setupad's] Flutter plugin that allows its user to display [Prebid Mob
 * Flutter version at least `2.10.5`
 ### Android
 * `minSdkVersion` at least `24`
-* `compileSdkVersion` at least `33`
+* `compileSdkVersion` at least `34`
 
 ### iOS
 * Minimum deployment target at least `12.0`

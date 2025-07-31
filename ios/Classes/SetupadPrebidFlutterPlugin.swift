@@ -25,34 +25,49 @@ public class SetupadPrebidFlutterPlugin: NSObject, FlutterPlugin {
                     Prebid.shared.prebidServerAccountId = accountId
                     Prebid.shared.pbsDebug = pbs
                     Prebid.shared.shareGeoLocation = true
-
-                    do {
-                        try Prebid.shared.setCustomPrebidServer(url:"https://prebid.setupad.io/openrtb2/auction")
-                    } catch {
-                        print("Error in setting custom Prebid Server: \(error)")
-                    }
-
-                    Prebid.initializeSDK() { status, error in
-                        switch status {
-                        case .succeeded:
-                            os_log("Prebid Mobile SDK initialized successfully!", log: customLog, type: .info)
-
-                        case .failed:
-                            os_log("%{error} Prebid Mobile SDK initialization error: %@",
-                                   log: customLog,
-                                   type: .error,
-                                   error!.localizedDescription)
-
-                        case .serverStatusWarning:
-                            os_log("%{error} Prebid Server status checking failed: %@",
-                                   log: customLog,
-                                   type: .error,
-                                   error!.localizedDescription)
-
-                        default:
-                            break
-                        }
-                    }
+                    
+                    
+                    try! Prebid.initializeSDK(
+                                serverURL: "https://prebid.setupad.io/openrtb2/auction",
+                                gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)
+                            ) { status, error in
+                                switch status {
+                                    case .succeeded:
+                                        print("Prebid SDK successfully initialized")
+                                    case .failed:
+                                        if let error = error {
+                                            print("An error occurred during Prebid SDK initialization: \(error.localizedDescription)")
+                                        }
+                                    case .serverStatusWarning:
+                                        if let error = error {
+                                            print("Prebid Server status checking failed: \(error.localizedDescription)")
+                                        }
+                                    default:
+                                        break
+                                    }
+                            }
+                    
+//                    Prebid.initializeSDK() { status, error in
+//                        switch status {
+//                        case .succeeded:
+//                            os_log("Prebid Mobile SDK initialized successfully!", log: customLog, type: .info)
+//
+//                        case .failed:
+//                            os_log("%{error} Prebid Mobile SDK initialization error: %@",
+//                                   log: customLog,
+//                                   type: .error,
+//                                   error!.localizedDescription)
+//
+//                        case .serverStatusWarning:
+//                            os_log("%{error} Prebid Server status checking failed: %@",
+//                                   log: customLog,
+//                                   type: .error,
+//                                   error!.localizedDescription)
+//
+//                        default:
+//                            break
+//                        }
+//                    }
                     Prebid.shared.timeoutMillis = timeoutMillis
                 }
 

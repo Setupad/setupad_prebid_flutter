@@ -2,14 +2,14 @@ PODS:
   - app_tracking_transparency (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - Google-Mobile-Ads-SDK (11.10.0):
+  - Google-Mobile-Ads-SDK (12.7.0):
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleUserMessagingPlatform (2.6.0)
+  - GoogleUserMessagingPlatform (3.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - PrebidMobile (2.3.0):
-    - PrebidMobile/core (= 2.3.0)
-  - PrebidMobile/core (2.3.0)
+  - PrebidMobile (3.1.0):
+    - PrebidMobile/core (= 3.1.0)
+  - PrebidMobile/core (3.1.0)
   - setupad_prebid_flutter (1.0.1):
     - Flutter
     - Google-Mobile-Ads-SDK
@@ -40,12 +40,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_tracking_transparency: e169b653478da7bb15a6c61209015378ca73e375
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  Google-Mobile-Ads-SDK: 13e6e98edfd78ad8d8a791edb927658cc260a56f
-  GoogleUserMessagingPlatform: 0c3a08353e53ce8c2feab7addd0b652cde522450
+  Google-Mobile-Ads-SDK: 90a3936b11fcb1a9a69b2a33fb608e793666ce73
+  GoogleUserMessagingPlatform: f8d0cdad3ca835406755d0a69aa634f00e76d576
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
-  PrebidMobile: 459a3a26eea63b7b4687dcadf928514050e26b31
+  PrebidMobile: 046bb6220157c7332dc6c6e19a99397bb481ac3a
   setupad_prebid_flutter: d5455c91aac708a5f9abb6d0fcee19f6a7b59c59
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

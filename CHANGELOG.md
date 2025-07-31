@@ -1,3 +1,8 @@
+## 1.0.3
+
+* Fixed Prebid Mobile SDK errors in iOS side
+* Updated Gradle version
+
 ## 1.0.2
 
 * Updated README.md
