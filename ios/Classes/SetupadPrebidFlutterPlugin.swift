@@ -19,16 +19,15 @@ public class SetupadPrebidFlutterPlugin: NSObject, FlutterPlugin {
             case "startPrebid":
                 let argument = call.arguments as! Dictionary<String, Any>
                 let accountId = argument["accountID"] as? String ?? ""
+                let urlServer = argument["urlServer"] as? String ?? ""
                 let timeoutMillis = argument["timeoutMillis"] as? Int ?? 3000
                 let pbs = argument["pbsDebug"] as? Bool ?? false
                 if (accountId != ""){
                     Prebid.shared.prebidServerAccountId = accountId
                     Prebid.shared.pbsDebug = pbs
                     Prebid.shared.shareGeoLocation = true
-                    
-                    
                     try! Prebid.initializeSDK(
-                                serverURL: "https://prebid.setupad.io/openrtb2/auction",
+                                serverURL: urlServer,
                                 gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)
                             ) { status, error in
                                 switch status {
@@ -46,28 +45,6 @@ public class SetupadPrebidFlutterPlugin: NSObject, FlutterPlugin {
                                         break
                                     }
                             }
-                    
-//                    Prebid.initializeSDK() { status, error in
-//                        switch status {
-//                        case .succeeded:
-//                            os_log("Prebid Mobile SDK initialized successfully!", log: customLog, type: .info)
-//
-//                        case .failed:
-//                            os_log("%{error} Prebid Mobile SDK initialization error: %@",
-//                                   log: customLog,
-//                                   type: .error,
-//                                   error!.localizedDescription)
-//
-//                        case .serverStatusWarning:
-//                            os_log("%{error} Prebid Server status checking failed: %@",
-//                                   log: customLog,
-//                                   type: .error,
-//                                   error!.localizedDescription)
-//
-//                        default:
-//                            break
-//                        }
-//                    }
                     Prebid.shared.timeoutMillis = timeoutMillis
                 }
 
