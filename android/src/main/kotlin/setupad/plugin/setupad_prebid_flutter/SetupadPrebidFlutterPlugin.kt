@@ -32,9 +32,10 @@ class SetupadPrebidFlutterPlugin : FlutterPlugin, ActivityAware {
                 if (call.method == "startPrebid") {
                     val arguments = call.arguments as? Map<*, *>
                     val prebidAccountID = arguments?.get("accountID") as? String ?: ""
+                    val urlServer = arguments?.get("urlServer") as? String ?: ""
                     val timeoutMillis = arguments?.get("timeoutMillis") as? Int ?: 0
                     val pbsDebug = arguments?.get("pbsDebug") as? Boolean ?: false
-                    initializePrebidMobile(prebidAccountID, timeoutMillis, pbsDebug)
+                    initializePrebidMobile(urlServer,prebidAccountID, timeoutMillis, pbsDebug)
                 } else {
                     result.notImplemented()
                 }
@@ -81,12 +82,12 @@ class SetupadPrebidFlutterPlugin : FlutterPlugin, ActivityAware {
     /**
      * Prebid Mobile SDK initialization method
      */
-    private fun initializePrebidMobile(prebidAccountID: String, timeout: Int, pbs: Boolean) {
+    private fun initializePrebidMobile(urlServer: String,prebidAccountID: String, timeout: Int, pbs: Boolean) {
         activityFuture.thenAccept { activity ->
             PrebidMobile.setPrebidServerAccountId(prebidAccountID)
             PrebidMobile.setPrebidServerHost(
                 Host.createCustomHost(
-                    "https://prebid.setupad.io/openrtb2/auction"
+                    urlServer
                 )
             )
 

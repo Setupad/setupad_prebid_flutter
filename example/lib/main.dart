@@ -5,9 +5,10 @@ import 'package:setupad_prebid_flutter/prebid_ads.dart';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  const PrebidMobile().initializeSDK("apptest", 3000, true);
+  const PrebidMobile().initializeSDK(
+      "https://prebid.setupad.io/openrtb2/auction", "apptest", 3000, true);
   runApp(const MyApp());
 }
 
@@ -95,7 +96,7 @@ class _MyAppState extends State<MyAppState> {
           children: <Widget>[
             PrebidAd(
               adType: 'banner',
-              configId: '6143',
+              configId: '6143', //you could add zones here
               adUnitId: '/147246189/app_test',
               width: 300,
               height: 250,
